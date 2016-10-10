@@ -1,0 +1,23 @@
+CREATE OR REPLACE FORCE VIEW EFFECTIVE_USER_PRIVILEGES (
+  "LOGIN_ID", "PARENT_PRIVILEGE_ID", "ASSIGNED_PRIVILEGE_ID", 
+  "AUTHORIZING_USER", "ASSIGNMENT_DATE", "EXPIRATION_DATE", "ENABLED", 
+  "PATH_ASSIGNMENT_DATE", "PATH_EXPIRATION_DATE", "PATH_ENABLED", 
+  "TREE_PATH", "TREE_DEPTH"
+) AS 
+  select *
+  from USER_ASSIGNMENT_TREE
+  where ENABLED='Y' 
+    and assignment_date <= sysdate
+    and (expiration_date is null or expiration_date >= sysdate);
+    
+CREATE OR REPLACE FORCE VIEW EFFECTIVE_ROLE_PRIVILEGES (
+  "PRIVILEGE_ID", "PARENT_PRIVILEGE_ID", "ASSIGNED_PRIVILEGE_ID", 
+  "AUTHORIZING_USER", "ASSIGNMENT_DATE", "EXPIRATION_DATE", "ENABLED", 
+  "PATH_ASSIGNMENT_DATE", "PATH_EXPIRATION_DATE", "PATH_ENABLED", 
+  "TREE_PATH", "TREE_DEPTH"
+) AS 
+  select *
+  from PRIVILEGE_ASSIGNMENT_TREE
+  where ENABLED='Y' 
+    and assignment_date <= sysdate
+    and (expiration_date is null or expiration_date >= sysdate);
