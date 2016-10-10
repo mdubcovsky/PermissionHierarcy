@@ -12,8 +12,8 @@ There are three concepts in the system: Users, Roles, and privileges.
 Since membership in a role can be seen as a kind of privilege in of itself, Roles are implemented as a special case of privileges.
 
 Concretely these concepts are implemented in two tables:
- 1. Users - (LOGIN_ID, NAME) [users.sql](users.sql)  
- 1. Privileges - (ID, DESCRIPTION) [privileges.sql](privileges.sql)
+ 1. Users - (LOGIN_ID, NAME) [users.sql](Users.sql)  
+ 1. Privileges - (ID, DESCRIPTION) [privileges.sql](Privileges.sql)
  
 In a practice, these tables would likely be much richer.
 
